@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MTN Store | Private Admin</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<style>body{background:#03050c;color:#e2e8f0;font-family:Arial,sans-serif}.gold{color:#D4AF37}.panel{background:#070b19;border:1px solid #263044;border-radius:14px}</style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+<main class="max-w-6xl mx-auto">
+<header class="flex flex-wrap justify-between items-center gap-4 mb-8"><div><p class="gold text-xs tracking-widest">PRIVATE CONTROL PANEL</p><h1 class="text-2xl font-bold">Muhammad Talha Nasar — Admin</h1></div><button id="logout" class="hidden border border-slate-600 rounded-lg px-4 py-2">Sign out</button></header>
+<section id="login" class="panel max-w-md mx-auto p-6">
+<h2 class="text-xl mb-4">Admin sign in</h2><form id="loginForm" class="space-y-3">
+<input id="email" type="email" required placeholder="Admin email" class="w-full bg-slate-900 p-3 rounded-lg">
+<input id="password" type="password" required placeholder="Password" class="w-full bg-slate-900 p-3 rounded-lg">
+<button class="w-full bg-amber-500 text-black font-bold p-3 rounded-lg">Sign in</button></form><p id="loginMsg" class="text-sm mt-3 text-rose-300"></p>
+</section>
+<section id="dashboard" class="hidden space-y-6">
+<div class="panel p-5"><h2 class="text-xl mb-4">Add a product</h2>
+<form id="productForm" class="grid md:grid-cols-2 gap-3">
+<input id="pname" required placeholder="Product name" class="bg-slate-900 p-3 rounded-lg">
+<input id="psku" placeholder="SKU (optional)" class="bg-slate-900 p-3 rounded-lg">
+<select id="pcat" required class="bg-slate-900 p-3 rounded-lg"><option value="">Select category</option></select>
+<input id="price" type="number" min="0" step=".01" required placeholder="Regular price (PKR)" class="bg-slate-900 p-3 rounded-lg">
+<input id="sale" type="number" min="0" step=".01" placeholder="Sale price (optional)" class="bg-slate-900 p-3 rounded-lg">
+<input id="stock" type="number" min="0" value="0" placeholder="Stock quantity" class="bg-slate-900 p-3 rounded-lg">
+<input id="photo" type="file" accept="image/jpeg,image/png,image/webp" required class="bg-slate-900 p-3 rounded-lg md:col-span-2">
+<textarea id="desc" placeholder="Description" rows="3" class="bg-slate-900 p-3 rounded-lg md:col-span-2"></textarea>
+<div class="flex flex-wrap gap-3 md:col-span-2"><button class="bg-amber-500 text-black font-bold rounded-lg px-5 py-3">Save as draft</button><button type="button" id="savePending" class="border border-amber-500 text-amber-300 rounded-lg px-5 py-3">Submit for approval</button></div>
+</form><p id="formMsg" class="text-sm mt-3"></p></div>
+<div class="panel p-5"><h2 class="text-xl mb-4">Products and approval</h2><p class="text-sm text-slate-400 mb-3">Draft and pending products are private. Publish only when ready.</p><div id="products" class="space-y-3"></div></div>
+</section>
+</main>
+<script>
+const sb=supabase.createClient(SUPABASE_CONFIG.url,SUPABASE_CONFIG.anonKey);
+const ADMIN_UID='40c6cdfb-971a-4c0b-a61a-3c33ec8a314f';
+const $=id=>document.getElementById(id);
+let categories=[];
+function message(id,t,bad=false){$(id).textContent=t;$(id).className='text-sm mt-3 '+(bad?'text-rose-300':'text-emerald-300')}
+async function refresh(){
+ const {data,error}=await sb.from('categories').select('*').order('name');
+ if(error) throw error; categories=data||[];
+ $('pcat').innerHTML='<option value="">Select category</option>'+categories.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+ const r=await sb.from('products').select('*').order('created_at',{ascending:false});
+ if(r.error) throw r.error;
+ $('products').innerHTML=(r.data||[]).map(p=>`<article class="border border-slate-700 rounded-xl p-3 flex flex-wrap gap-3 items-center">
+ ${p.images?.[0]?`<img src="${p.images[0]}" class="w-16 h-16 object-cover rounded">`:''}
+ <div class="flex-1 min-w-40"><b>${esc(p.name)}</b><p class="text-xs text-slate-400">PKR ${Number(p.sale_price??p.regular_price).toLocaleString()} · ${esc(p.status)}</p></div>
+ <button onclick="setStatus('${p.id}','published')" class="bg-emerald-700 px-3 py-2 rounded text-sm">Approve & publish</button>
+ <button onclick="setStatus('${p.id}','draft')" class="bg-slate-700 px-3 py-2 rounded text-sm">Unpublish</button>
+ <button onclick="removeProduct('${p.id}')" class="bg-rose-900 px-3 py-2 rounded text-sm">Delete</button></article>`).join('')||'<p class="text-slate-400">No products yet.</p>';
+}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+async function setStatus(id,status){const {error}=await sb.from('products').update({status,updated_at:new Date().toISOString()}).eq('id',id);if(error)alert(error.message);else refresh();}
+async function removeProduct(id){if(!confirm('Delete this product?'))return;const {error}=await sb.from('products').delete().eq('id',id);if(error)alert(error.message);else refresh();}
+window.setStatus=setStatus;window.removeProduct=removeProduct;
+async function addProduct(status){
+ try{
+ const file=$('photo').files[0]; if(!file)throw Error('Please choose a product image.');
+ const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+ const path=ADMIN_UID+'/'+crypto.randomUUID()+'-'+safe;
+ const up=await sb.storage.from('product-images').upload(path,file,{upsert:false,contentType:file.type});
+ if(up.error)throw up.error;
+ const image=sb.storage.from('product-images').getPublicUrl(path).data.publicUrl;
+ const name=$('pname').value.trim();
+ const slug=name.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'-'+Date.now();
+ const row={name,slug,sku:$('psku').value||null,description:$('desc').value,category_id:Number($('pcat').value),regular_price:Number($('price').value),sale_price:$('sale').value?Number($('sale').value):null,stock_quantity:Number($('stock').value),images:[image],status};
+ const ins=await sb.from('products').insert(row);if(ins.error)throw ins.error;
+ $('productForm').reset();message('formMsg',status==='draft'?'Saved as draft.':'Submitted for approval.');await refresh();
+ }catch(e){message('formMsg',e.message,true);}
+}
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();const r=await sb.auth.signInWithPassword({email:$('email').value,password:$('password').value});if(r.error){message('loginMsg',r.error.message,true);return;}if(r.data.user.id!==ADMIN_UID){await sb.auth.signOut();message('loginMsg','This account is not authorized.',true);return;} $('login').classList.add('hidden');$('dashboard').classList.remove('hidden');$('logout').classList.remove('hidden');try{await refresh()}catch(err){message('formMsg',err.message,true);}});
+$('logout').onclick=async()=>{await sb.auth.signOut();location.reload()};
+$('productForm').onsubmit=e=>{e.preventDefault();addProduct('draft')};
+$('savePending').onclick=()=>{if(!$('productForm').reportValidity())return;addProduct('pending')};
+sb.auth.getSession().then(async({data})=>{if(data.session?.user?.id===ADMIN_UID){$('login').classList.add('hidden');$('dashboard').classList.remove('hidden');$('logout').classList.remove('hidden');try{await refresh()}catch(e){message('formMsg',e.message,true)}}});
+</script>
+</body></html>
