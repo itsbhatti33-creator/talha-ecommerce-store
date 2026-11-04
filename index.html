@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Talha Nasar | Curated Luxury Store</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0B132B',
+                            900: '#070B19',
+                            950: '#03050C'
+                        },
+                        gold: {
+                            400: '#F3C66F',
+                            500: '#D4AF37',
+                            600: '#AA8C2C'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        .glass-header {
+            background: rgba(7, 11, 25, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0CA 0%, #D4AF37 50%, #AA8C2C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #D4AF37 0%, #B89628 100%);
+        }
+        .gold-gradient-bg:hover {
+            background: linear-gradient(135deg, #E5C148 0%, #C9A733 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0B132B;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-navy-950 text-slate-100 flex flex-col min-h-screen relative custom-scrollbar">
+
+    <!-- Announcement Bar -->
+    <div class="bg-navy-900 border-b border-gold-500/20 text-xs py-2 px-4 text-center text-slate-300 flex justify-between items-center max-w-full overflow-hidden">
+        <div class="hidden md:flex items-center space-x-4">
+            <span><i class="fa-solid fa-truck-fast text-gold-500 mr-1.5"></i> Worldwide Express Delivery</span>
+            <span><i class="fa-solid fa-shield-halved text-gold-500 mr-1.5"></i> 2-Year Founder Guarantee</span>
+        </div>
+        <div class="mx-auto md:mx-0 font-medium tracking-wide">
+            ✨ Exclusively Curated by <span class="text-gold-400 font-semibold">Muhammad Talha Nasar</span> — Free Shipping on Orders Over $150
+        </div>
+        <div class="hidden md:flex items-center space-x-3">
+            <span class="hover:text-gold-400 cursor-pointer">USD ($)</span>
+            <span>|</span>
+            <span class="hover:text-gold-400 cursor-pointer">Support</span>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-slate-300 hover:text-gold-400 focus:outline-none p-2" aria-label="Open Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+
+            <!-- Brand Logo -->
+            <a href="#" class="flex flex-col items-center lg:items-start group">
+                <span class="font-serif-title text-xl sm:text-2xl font-bold tracking-wider gold-gradient-text group-hover:opacity-90 transition-opacity">
+                    MUHAMMAD TALHA NASAR
+                </span>
+                <span class="text-[9px] sm:text-[10px] tracking-[0.25em] text-slate-400 uppercase font-light -mt-1">
+                    Luxury Essentials & Lifestyle
+                </span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+                <a href="#hero" class="text-gold-400 hover:text-gold-500 transition-colors">Home</a>
+                <a href="#catalog" class="text-slate-300 hover:text-gold-400 transition-colors">Collection</a>
+                <a href="#about" class="text-slate-300 hover:text-gold-400 transition-colors">Founder's Story</a>
+                <a href="#features" class="text-slate-300 hover:text-gold-400 transition-colors">Why Us</a>
+                <a href="#testimonials" class="text-slate-300 hover:text-gold-400 transition-colors">Reviews</a>
+            </nav>
+
+            <!-- Right Actions (Search & Cart) -->
+            <div class="flex items-center space-x-5">
+                <button id="search-toggle-btn" class="text-slate-300 hover:text-gold-400 transition-colors p-2" title="Search">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+                
+                <!-- Account / Admin Button -->
+                <div class="relative" id="user-menu-wrapper">
+                    <button id="auth-btn" class="text-slate-300 hover:text-gold-400 transition-colors p-2 flex items-center space-x-2 text-sm font-medium">
+                        <i class="fa-regular fa-user text-lg"></i>
+                        <span id="user-btn-text" class="hidden sm:inline">Sign In</span>
+                    </button>
+                    <!-- User Dropdown Menu -->
+                    <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-navy-900 border border-slate-800 rounded-xl shadow-2xl p-2 z-50">
+                        <div class="px-3 py-2 border-b border-slate-800 mb-1">
+                            <p id="dropdown-user-name" class="text-xs font-bold text-slate-100">User Name</p>
+                            <p id="dropdown-user-role" class="text-[10px] text-gold-400 uppercase tracking-wider font-semibold">Customer</p>
+                        </div>
+                        <button id="open-admin-panel-btn" class="hidden w-full text-left px-3 py-2 text-xs text-gold-400 hover:bg-navy-950 rounded-lg font-semibold flex items-center space-x-2">
+                            <i class="fa-solid fa-sliders"></i>
+                            <span>Admin Dashboard</span>
+                        </button>
+                        <button id="logout-btn" class="w-full text-left px-3 py-2 text-xs text-rose-400 hover:bg-navy-950 rounded-lg flex items-center space-x-2">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Log Out</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button id="cart-btn" class="relative p-2 text-slate-300 hover:text-gold-400 transition-colors flex items-center" title="Cart">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cart-count-badge" class="absolute -top-1 -right-1 bg-gold-500 text-navy-950 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-navy-900 transition-all scale-100">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dynamic Search Bar (Hidden by default) -->
+        <div id="search-bar" class="hidden border-t border-slate-800 bg-navy-900/95 px-4 py-3 transition-all">
+            <div class="max-w-3xl mx-auto flex items-center space-x-3">
+                <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                <input type="text" id="search-input" placeholder="Search premium timepieces, fragrances, leather goods..." class="w-full bg-transparent text-slate-100 focus:outline-none text-sm placeholder-slate-500">
+                <button id="close-search" class="text-slate-400 hover:text-slate-200 text-xs uppercase tracking-wider">Close</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="fixed inset-0 bg-navy-950/95 z-50 flex flex-col justify-between p-6 transform -translate-x-full transition-transform duration-300 lg:hidden">
+        <div>
+            <div class="flex justify-between items-center mb-8 pb-4 border-b border-slate-800">
+                <span class="font-serif-title text-lg gold-gradient-text font-bold">MUHAMMAD TALHA NASAR</span>
+                <button id="close-mobile-menu" class="text-slate-400 hover:text-gold-400 text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-5 text-lg font-medium">
+                <a href="#hero" class="mobile-nav-link text-gold-400">Home</a>
+                <a href="#catalog" class="mobile-nav-link text-slate-200 hover:text-gold-400">Collection</a>
+                <a href="#about" class="mobile-nav-link text-slate-200 hover:text-gold-400">Founder's Story</a>
+                <a href="#features" class="mobile-nav-link text-slate-200 hover:text-gold-400">Why Choose Us</a>
+                <a href="#testimonials" class="mobile-nav-link text-slate-200 hover:text-gold-400">Client Reviews</a>
+            </nav>
+        </div>
+        <div class="pt-6 border-t border-slate-800 text-xs text-slate-400 text-center">
+            <p>Curated by Muhammad Talha Nasar</p>
+            <div class="flex justify-center space-x-4 mt-3 text-base text-gold-400">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-slate-800/60 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950">
+            <!-- Background Ambient Glow -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 sm:w-[600px] h-96 sm:h-[600px] bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400 text-xs font-semibold tracking-widest uppercase mb-6">
+                        <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
+                        Signature Collection 2026
+                    </div>
+                    
+                    <h1 class="font-serif-title text-4xl sm:text-6xl lg:text-7xl font-bold text-slate-100 leading-tight mb-6">
+                        Elegance Redefined by <span class="gold-gradient-text block sm:inline">Muhammad Talha Nasar</span>
+                    </h1>
+                    
+                    <p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+                        Discover a world of hand-picked luxury items crafted for connoisseurs of timeless quality. From precision chronographs to bespoke scents and artisanal leather goods.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#catalog" class="w-full sm:w-auto px-8 py-4 rounded-xl gold-gradient-bg text-navy-950 font-semibold tracking-wide text-sm shadow-xl shadow-gold-500/10 hover:shadow-gold-500/25 transition-all text-center">
+                            Explore Collection <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                        <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-700 bg-navy-900/60 hover:bg-slate-800 text-slate-200 text-sm font-medium transition-colors text-center">
+                            Read Founder's Story
+                        </a>
+                    </div>
+
+                    <!-- Counter Badges -->
+                    <div class="mt-12 grid grid-cols-3 gap-4 border-t border-slate-800/80 pt-8 max-w-md mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl font-bold gold-gradient-text font-serif-title">100%</div>
+                            <div class="text-xs text-slate-400 mt-0.5">Authentic & Pure</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold gold-gradient-text font-serif-title">12k+</div>
+                            <div class="text-xs text-slate-400 mt-0.5">Happy Clients</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold gold-gradient-text font-serif-title">4.9★</div>
+                            <div class="text-xs text-slate-400 mt-0.5">Global Rating</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Decorative Frame -->
+                        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-gold-500/40 via-gold-400/20 to-transparent blur-sm"></div>
+                        <div class="relative rounded-2xl overflow-hidden border border-slate-700/80 bg-navy-900 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Muhammad Talha Nasar Luxury Watch" 
+                                 class="w-full h-[420px] object-cover hover:scale-105 transition-transform duration-700">
+                            
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-950/80 to-transparent p-6 flex justify-between items-end">
+                                <div>
+                                    <span class="text-xs text-gold-400 font-semibold tracking-wider uppercase">Featured Edition</span>
+                                    <h3 class="text-lg font-serif-title text-slate-100 font-semibold">The Nasar Royal Chrono</h3>
+                                </div>
+                                <span class="text-lg font-bold text-slate-100">$450.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Value Proposition Badges -->
+        <section id="features" class="py-12 bg-navy-900/50 border-b border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <div class="flex items-center space-x-4 p-4 rounded-xl bg-navy-900/40 border border-slate-800/60">
+                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl flex-shrink-0">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-100">Bespoke Craftsmanship</h4>
+                            <p class="text-xs text-slate-400 mt-1">Rigorous quality inspection</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4 p-4 rounded-xl bg-navy-900/40 border border-slate-800/60">
+                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl flex-shrink-0">
+                            <i class="fa-solid fa-plane-departure"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-100">Express Delivery</h4>
+                            <p class="text-xs text-slate-400 mt-1">Tracked insured shipping</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4 p-4 rounded-xl bg-navy-900/40 border border-slate-800/60">
+                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl flex-shrink-0">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-100">Satisfaction Guarantee</h4>
+                            <p class="text-xs text-slate-400 mt-1">30-day effortless returns</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4 p-4 rounded-xl bg-navy-900/40 border border-slate-800/60">
+                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl flex-shrink-0">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-100">Concierge Support</h4>
+                            <p class="text-xs text-slate-400 mt-1">Personalized client care</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Catalog Section -->
+        <section id="catalog" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-gold-400">Curated Inventory</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-slate-100 mt-1">Signature Collections</h2>
+                </div>
+                
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 mt-6 md:mt-0" id="category-filters">
+                    <button data-category="all" class="filter-btn active-filter px-4 py-2 rounded-lg text-xs font-medium tracking-wider transition-all bg-gold-500 text-navy-950">
+                        All Items
+                    </button>
+                    <button data-category="watches" class="filter-btn px-4 py-2 rounded-lg text-xs font-medium tracking-wider transition-all bg-navy-900 text-slate-300 border border-slate-800 hover:border-gold-500/40">
+                        Timepieces
+                    </button>
+                    <button data-category="fragrances" class="filter-btn px-4 py-2 rounded-lg text-xs font-medium tracking-wider transition-all bg-navy-900 text-slate-300 border border-slate-800 hover:border-gold-500/40">
+                        Fragrances
+                    </button>
+                    <button data-category="leather" class="filter-btn px-4 py-2 rounded-lg text-xs font-medium tracking-wider transition-all bg-navy-900 text-slate-300 border border-slate-800 hover:border-gold-500/40">
+                        Leather Craft
+                    </button>
+                    <button data-category="eyewear" class="filter-btn px-4 py-2 rounded-lg text-xs font-medium tracking-wider transition-all bg-navy-900 text-slate-300 border border-slate-800 hover:border-gold-500/40">
+                        Eyewear
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Dynamic Products will be rendered here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Founder Showcase Banner -->
+        <section id="about" class="py-20 bg-gradient-to-r from-navy-900 via-navy-800 to-navy-900 border-y border-slate-800 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-5">
+                        <div class="relative rounded-2xl overflow-hidden border border-gold-500/30 p-2 bg-navy-950/60 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Muhammad Talha Nasar" 
+                                 class="w-full h-96 sm:h-[450px] object-cover rounded-xl filter grayscale contrast-125 hover:grayscale-0 transition-all duration-700">
+                            <div class="absolute bottom-6 left-6 right-6 bg-navy-950/90 backdrop-blur-md border border-slate-700/60 p-4 rounded-xl">
+                                <p class="text-xs text-gold-400 tracking-wider font-semibold uppercase">Founder & Creative Director</p>
+                                <p class="text-base font-serif-title font-bold text-slate-100 mt-0.5">Muhammad Talha Nasar</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-gold-400">The Visionary Mind</span>
+                        <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-slate-100 mt-2 mb-6 leading-snug">
+                            "True luxury is not about excess, it is about perfection in every detail."
+                        </h2>
+                        
+                        <div class="space-y-4 text-slate-300 text-sm sm:text-base font-light leading-relaxed">
+                            <p>
+                                Welcome to the official brand space of <strong class="text-gold-400 font-semibold">Muhammad Talha Nasar</strong>. Founded on the core philosophy that everyday essentials should be extraordinary, our collection reflects a passion for craftsmanship, durability, and distinguished style.
+                            </p>
+                            <p>
+                                Every timepiece, fragrance, and leather accessory bearing our seal undergoes meticulous design and quality control. We source only the finest raw materials to ensure that what reaches your hands is nothing short of exceptional.
+                            </p>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                            <div>
+                                <span class="font-serif-title italic text-2xl text-gold-400">Muhammad Talha Nasar</span>
+                                <p class="text-xs text-slate-500 mt-1">Founder & Managing Director</p>
+                            </div>
+
+                            <div class="flex items-center space-x-3 text-slate-300">
+                                <a href="#" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-gold-400 hover:text-gold-400 transition-colors">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-gold-400 hover:text-gold-400 transition-colors">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-gold-400 hover:text-gold-400 transition-colors">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-400">Social Proof</span>
+                <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-slate-100 mt-2">Client Testimonials</h2>
+                <p class="text-slate-400 text-sm mt-3">What global patrons say about Muhammad Talha Nasar collections.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-navy-900 border border-slate-800 p-6 rounded-2xl relative flex flex-col justify-between hover:border-gold-500/30 transition-all">
+                    <div>
+                        <div class="text-gold-400 text-xs flex space-x-1 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm italic font-light leading-relaxed">
+                            "The precision on the Nasar Royal Chrono exceeded all expectations. Packaging felt like unboxing a high-end masterpiece. Truly top-tier curation!"
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 font-bold">
+                            EH
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-semibold text-slate-100">Ethan H.</h5>
+                            <span class="text-xs text-slate-500">Verified Buyer • London, UK</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-navy-900 border border-slate-800 p-6 rounded-2xl relative flex flex-col justify-between hover:border-gold-500/30 transition-all">
+                    <div>
+                        <div class="text-gold-400 text-xs flex space-x-1 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm italic font-light leading-relaxed">
+                            "Purchased the Noir Musk Parfum for my husband. The scent longevity is remarkable. Muhammad Talha Nasar’s store is now my primary recommendation!"
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 font-bold">
+                            SA
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-semibold text-slate-100">Sophia A.</h5>
+                            <span class="text-xs text-slate-500">Verified Buyer • Dubai, UAE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-navy-900 border border-slate-800 p-6 rounded-2xl relative flex flex-col justify-between hover:border-gold-500/30 transition-all">
+                    <div>
+                        <div class="text-gold-400 text-xs flex space-x-1 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm italic font-light leading-relaxed">
+                            "Fast delivery to New York and customer service was incredibly prompt when I asked a custom sizing question. High quality leather wallet."
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 font-bold">
+                            MR
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-semibold text-slate-100">Marcus R.</h5>
+                            <span class="text-xs text-slate-500">Verified Buyer • New York, USA</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="py-16 bg-navy-900 border-t border-slate-800">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <i class="fa-regular fa-envelope-open text-3xl text-gold-400 mb-4"></i>
+                <h3 class="font-serif-title text-2xl sm:text-3xl font-bold text-slate-100">Join the Private Club</h3>
+                <p class="text-slate-400 text-sm mt-2 max-w-xl mx-auto">
+                    Subscribe to receive private invitations to limited product drops and personal notes from Muhammad Talha Nasar.
+                </p>
+                <form id="newsletter-form" class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+                    <input type="email" required placeholder="Enter your email address..." class="w-full px-4 py-3 rounded-xl bg-navy-950 border border-slate-700 text-slate-100 text-sm focus:outline-none focus:border-gold-400">
+                    <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-xl gold-gradient-bg text-navy-950 font-semibold text-sm whitespace-nowrap hover:opacity-90 transition-opacity">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 border-t border-slate-800 text-slate-400 text-sm pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+            
+            <div class="lg:col-span-2">
+                <a href="#" class="font-serif-title text-xl font-bold gold-gradient-text tracking-wider">
+                    MUHAMMAD TALHA NASAR
+                </a>
+                <p class="text-slate-400 text-xs mt-3 leading-relaxed max-w-sm">
+                    A destination for curated luxury items. Designed with elegance, engineered for durability, and presented with personal founder commitment.
+                </p>
+                <div class="mt-6 flex space-x-4 text-slate-400 text-base">
+                    <a href="#" class="hover:text-gold-400 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-gold-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-gold-400 transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="hover:text-gold-400 transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-slate-100 font-semibold text-sm tracking-wider uppercase mb-4">Navigation</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="#hero" class="hover:text-gold-400 transition-colors">Home Banner</a></li>
+                    <li><a href="#catalog" class="hover:text-gold-400 transition-colors">All Collections</a></li>
+                    <li><a href="#about" class="hover:text-gold-400 transition-colors">About Muhammad Talha Nasar</a></li>
+                    <li><a href="#testimonials" class="hover:text-gold-400 transition-colors">Client Reviews</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-slate-100 font-semibold text-sm tracking-wider uppercase mb-4">Customer Care</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Warranty & Authentication</a></li>
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">Order Tracking</a></li>
+                    <li><a href="#" class="hover:text-gold-400 transition-colors">FAQ & Support</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-slate-100 font-semibold text-sm tracking-wider uppercase mb-4">Contact Info</h4>
+                <ul class="space-y-2.5 text-xs text-slate-400">
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-envelope text-gold-400"></i> contact@mtnasar-store.com
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-gold-400"></i> +1 (800) 555-NASAR
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot text-gold-400"></i> Executive Suite, Luxury District
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+            <p>© 2026 <span class="text-gold-400 font-medium">Muhammad Talha Nasar</span>. All Rights Reserved.</p>
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="#" class="hover:text-slate-300">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-300">Terms of Service</a>
+                <a href="#" class="hover:text-slate-300">Cookies Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slide-out Shopping Cart Drawer -->
+    <div id="cart-drawer-backdrop" class="fixed inset-0 bg-navy-950/80 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300">
+        <div id="cart-drawer" class="fixed inset-y-0 right-0 max-w-md w-full bg-navy-900 border-l border-slate-800 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
+            
+            <!-- Cart Header -->
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-bag-shopping text-gold-400 text-lg"></i>
+                    <h3 class="font-serif-title text-lg font-bold text-slate-100">Your Shopping Bag</h3>
+                </div>
+                <button id="close-cart-btn" class="text-slate-400 hover:text-gold-400 p-2 text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items List -->
+            <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-4 custom-scrollbar">
+                <!-- Dynamic Cart Items injected here -->
+            </div>
+
+            <!-- Cart Footer -->
+            <div class="p-6 border-t border-slate-800 bg-navy-950">
+                <div class="space-y-2 text-sm mb-4">
+                    <div class="flex justify-between text-slate-400">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-slate-400">
+                        <span>Shipping</span>
+                        <span class="text-gold-400">FREE</span>
+                    </div>
+                    <div class="flex justify-between text-slate-100 font-bold text-base pt-2 border-t border-slate-800">
+                        <span>Total</span>
+                        <span id="cart-total" class="gold-gradient-text">$0.00</span>
+                    </div>
+                </div>
+
+                <button id="checkout-btn" class="w-full py-3.5 rounded-xl gold-gradient-bg text-navy-950 font-bold text-sm tracking-wider uppercase hover:opacity-90 transition-opacity">
+                    Proceed to Checkout
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Auth / Login / Register Modal -->
+    <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-navy-900 border border-slate-800 rounded-2xl max-w-md w-full overflow-hidden shadow-2xl relative p-6 sm:p-8">
+            <button id="close-auth-modal" class="absolute top-4 right-4 text-slate-400 hover:text-gold-400 text-xl w-8 h-8 rounded-full bg-navy-950/80 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <span class="font-serif-title text-xl font-bold gold-gradient-text">MUHAMMAD TALHA NASAR</span>
+                <p class="text-xs text-slate-400 mt-1">Access your store portal & preferences</p>
+            </div>
+
+            <!-- Auth Mode Switch Tabs -->
+            <div class="flex border-b border-slate-800 mb-6 text-xs font-semibold">
+                <button id="tab-cust-login" class="flex-1 py-2 text-gold-400 border-b-2 border-gold-400 text-center">Customer Login</button>
+                <button id="tab-admin-login" class="flex-1 py-2 text-slate-400 border-b-2 border-transparent text-center hover:text-slate-200">Admin Login</button>
+                <button id="tab-register" class="flex-1 py-2 text-slate-400 border-b-2 border-transparent text-center hover:text-slate-200">Register</button>
+            </div>
+
+            <!-- Demo Credentials Quick Pill -->
+            <div id="demo-credentials-box" class="bg-navy-950 p-3 rounded-xl border border-gold-500/30 mb-6 text-xs flex justify-between items-center">
+                <div>
+                    <span class="text-gold-400 font-bold block">Demo Credentials:</span>
+                    <span id="demo-email-text" class="text-slate-300 font-mono">user@nasar.com</span> / <span id="demo-pass-text" class="text-slate-300 font-mono">user123</span>
+                </div>
+                <button id="fill-demo-btn" class="px-2.5 py-1 bg-gold-500/20 text-gold-400 border border-gold-500/40 rounded-lg font-semibold hover:bg-gold-500 hover:text-navy-950 transition-colors">Auto Fill</button>
+            </div>
+
+            <!-- Auth Form -->
+            <form id="auth-form" class="space-y-4">
+                <div id="name-field-group" class="hidden">
+                    <label class="block text-xs text-slate-400 mb-1">Full Name</label>
+                    <input type="text" id="auth-name-input" placeholder="e.g. Talha Nasar" class="w-full px-4 py-2.5 rounded-xl bg-navy-950 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-gold-400">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Email Address / Username</label>
+                    <input type="email" id="auth-email-input" required placeholder="name@domain.com" class="w-full px-4 py-2.5 rounded-xl bg-navy-950 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-gold-400">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Password</label>
+                    <input type="password" id="auth-pass-input" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl bg-navy-950 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-gold-400">
+                </div>
+
+                <button type="submit" id="auth-submit-btn" class="w-full py-3 rounded-xl gold-gradient-bg text-navy-950 font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Overlay Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-navy-950/90 backdrop-blur-md hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen flex flex-col">
+            
+            <!-- Admin Top Header -->
+            <div class="bg-navy-900 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 shadow-xl">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <h2 class="font-serif-title text-xl font-bold text-slate-100">Muhammad Talha Nasar — Admin Control Panel</h2>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1">Manage live store inventory, active orders, and sales metrics.</p>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <span class="text-xs bg-gold-500/10 border border-gold-500/30 text-gold-400 px-3 py-1 rounded-full font-semibold">Logged in as Administrator</span>
+                    <button id="close-admin-btn" class="px-4 py-2 bg-navy-950 border border-slate-700 hover:border-gold-400 text-slate-300 hover:text-gold-400 rounded-xl text-xs font-semibold transition-all">
+                        <i class="fa-solid fa-xmark mr-1"></i> Exit Admin Mode
+                    </button>
+                </div>
+            </div>
+
+            <!-- Admin Nav Tabs -->
+            <div class="flex space-x-2 border-b border-slate-800 mb-8 text-xs font-semibold">
+                <button id="admin-tab-overview" class="admin-tab-btn active-admin-tab px-5 py-3 rounded-t-xl bg-gold-500 text-navy-950">Overview</button>
+                <button id="admin-tab-products" class="admin-tab-btn px-5 py-3 rounded-t-xl bg-navy-900 text-slate-300 border-t border-x border-slate-800 hover:text-gold-400">Manage Inventory</button>
+                <button id="admin-tab-orders" class="admin-tab-btn px-5 py-3 rounded-t-xl bg-navy-900 text-slate-300 border-t border-x border-slate-800 hover:text-gold-400">Customer Orders</button>
+            </div>
+
+            <!-- TAB 1: OVERVIEW -->
+            <div id="admin-view-overview" class="space-y-8">
+                <!-- Stat Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-navy-900 border border-slate-800 p-6 rounded-2xl">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-semibold uppercase">Total Revenue</span>
+                            <i class="fa-solid fa-dollar-sign text-gold-400 text-lg"></i>
+                        </div>
+                        <h3 id="stat-revenue" class="text-2xl font-bold font-serif-title text-slate-100 mt-2">$2,840.00</h3>
+                        <p class="text-[10px] text-emerald-400 mt-1"><i class="fa-solid fa-arrow-trend-up"></i> +14.2% from last week</p>
+                    </div>
+
+                    <div class="bg-navy-900 border border-slate-800 p-6 rounded-2xl">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-semibold uppercase">Total Orders</span>
+                            <i class="fa-solid fa-bag-shopping text-gold-400 text-lg"></i>
+                        </div>
+                        <h3 id="stat-orders" class="text-2xl font-bold font-serif-title text-slate-100 mt-2">12</h3>
+                        <p class="text-[10px] text-emerald-400 mt-1"><i class="fa-solid fa-check"></i> Live customer queue active</p>
+                    </div>
+
+                    <div class="bg-navy-900 border border-slate-800 p-6 rounded-2xl">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-semibold uppercase">Live Products</span>
+                            <i class="fa-solid fa-boxes-stacked text-gold-400 text-lg"></i>
+                        </div>
+                        <h3 id="stat-products" class="text-2xl font-bold font-serif-title text-slate-100 mt-2">8</h3>
+                        <p class="text-[10px] text-slate-400 mt-1">Catalog in sync with database</p>
+                    </div>
+
+                    <div class="bg-navy-900 border border-slate-800 p-6 rounded-2xl">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-semibold uppercase">Store Rating</span>
+                            <i class="fa-solid fa-star text-gold-400 text-lg"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold font-serif-title text-slate-100 mt-2">4.9 / 5.0</h3>
+                        <p class="text-[10px] text-gold-400 mt-1">★ ★ ★ ★ ★ (98 Reviews)</p>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Panel -->
+                <div class="bg-navy-900 border border-slate-800 p-6 rounded-2xl">
+                    <h3 class="font-serif-title text-lg font-bold text-slate-100 mb-4">Quick Founder Notes & Status</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Welcome, <strong>Muhammad Talha Nasar</strong>! You are currently operating in full administrative override mode. Any item added, modified, or removed inside this control panel immediately syncs with your live customer storefront.
+                    </p>
+                </div>
+            </div>
+
+            <!-- TAB 2: MANAGE PRODUCTS -->
+            <div id="admin-view-products" class="hidden space-y-8">
+                <!-- Add New Product Form -->
+                <div class="bg-navy-900 border border-slate-800 p-6 rounded-2xl">
+                    <h3 class="font-serif-title text-lg font-bold text-slate-100 mb-4">Add New Luxury Product</h3>
+                    <form id="add-product-form" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Product Title</label>
+                            <input type="text" id="new-prod-title" required placeholder="e.g. Royal Chrono" class="w-full px-3.5 py-2 rounded-xl bg-navy-950 border border-slate-700 text-slate-100 text-xs focus:border-gold-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Category</label>
+                            <select id="new-prod-cat" class="w-full px-3.5 py-2 rounded-xl bg-navy-950 border border-slate-700 text-slate-100 text-xs focus:border-gold-400">
+                                <option value="watches">Timepieces</option>
+                                <option value="fragrances">Fragrances</option>
+                                <option value="leather">Leather Craft</option>
+                                <option value="eyewear">Eyewear</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Price ($)</label>
+                            <input type="number" step="0.01" id="new-prod-price" required placeholder="299.00" class="w-full px-3.5 py-2 rounded-xl bg-navy-950 border border-slate-700 text-slate-100 text-xs focus:border-gold-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Image URL</label>
+                            <input type="url" id="new-prod-img" required placeholder="https://images.unsplash.com/..." class="w-full px-3.5 py-2 rounded-xl bg-navy-950 border border-slate-700 text-slate-100 text-xs focus:border-gold-400">
+                        </div>
+                        <div class="md:col-span-2 lg:col-span-3">
+                            <label class="block text-xs text-slate-400 mb-1">Description</label>
+                            <input type="text" id="new-prod-desc" required placeholder="Full description of materials, specifications..." class="w-full px-3.5 py-2 rounded-xl bg-navy-950 border border-slate-700 text-slate-100 text-xs focus:border-gold-400">
+                        </div>
+                        <div class="flex items-end">
+                            <button type="submit" class="w-full py-2.5 rounded-xl gold-gradient-bg text-navy-950 font-bold text-xs uppercase hover:opacity-90 transition-opacity">
+                                + Add Product
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Live Inventory Table -->
+                <div class="bg-navy-900 border border-slate-800 rounded-2xl overflow-hidden">
+                    <div class="p-6 border-b border-slate-800">
+                        <h3 class="font-serif-title text-lg font-bold text-slate-100">Live Inventory Management</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-navy-950 text-slate-400 uppercase tracking-wider border-b border-slate-800">
+                                <tr>
+                                    <th class="p-4">Item</th>
+                                    <th class="p-4">Category</th>
+                                    <th class="p-4">Price</th>
+                                    <th class="p-4">Rating</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-inventory-table-body" class="divide-y divide-slate-800 text-slate-200">
+                                <!-- Dynamic admin inventory rows injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: MANAGE ORDERS -->
+            <div id="admin-view-orders" class="hidden space-y-8">
+                <div class="bg-navy-900 border border-slate-800 rounded-2xl overflow-hidden">
+                    <div class="p-6 border-b border-slate-800">
+                        <h3 class="font-serif-title text-lg font-bold text-slate-100">Customer Orders Queue</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-navy-950 text-slate-400 uppercase tracking-wider border-b border-slate-800">
+                                <tr>
+                                    <th class="p-4">Order ID</th>
+                                    <th class="p-4">Customer</th>
+                                    <th class="p-4">Items Count</th>
+                                    <th class="p-4">Total</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4 text-right">Update Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-orders-table-body" class="divide-y divide-slate-800 text-slate-200">
+                                <!-- Dynamic admin order rows injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Quick View Product Modal -->
+    <div id="quickview-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-navy-900 border border-slate-800 rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative grid grid-cols-1 md:grid-cols-2">
+            <button id="close-quickview" class="absolute top-4 right-4 z-10 text-slate-400 hover:text-gold-400 text-xl w-8 h-8 rounded-full bg-navy-950/80 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="h-64 md:h-full relative">
+                <img id="qv-img" src="" alt="Product Image" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                    <span id="qv-category" class="text-xs font-semibold text-gold-400 tracking-wider uppercase">Category</span>
+                    <h3 id="qv-title" class="font-serif-title text-2xl font-bold text-slate-100 mt-1">Product Title</h3>
+                    <div class="flex items-center space-x-2 mt-2">
+                        <div class="text-gold-400 text-xs" id="qv-rating">★ ★ ★ ★ ★</div>
+                        <span class="text-xs text-slate-400">(4.9/5)</span>
+                    </div>
+                    <p id="qv-price" class="text-2xl font-bold text-slate-100 mt-4">$0.00</p>
+                    <p id="qv-desc" class="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed">Product description here...</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800">
+                    <button id="qv-add-cart-btn" class="w-full py-3 rounded-xl gold-gradient-bg text-navy-950 font-semibold text-sm hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Add To Bag</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Initial Catalog Data
+        const initialProducts = [
+            {
+                id: 1,
+                name: "The Nasar Royal Chronograph",
+                category: "watches",
+                price: 450.00,
+                rating: 5,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+                description: "Surgical grade stainless steel, sapphire crystal glass, and automatic precision movement designed for distinguished elegance."
+            },
+            {
+                id: 2,
+                name: "Noir Oud & Amber Parfum",
+                category: "fragrances",
+                price: 185.00,
+                rating: 5,
+                image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80",
+                description: "Bespoke blend of rare Cambodian oud, warm amber, and French rose petals. Long-lasting luxury signature scent."
+            },
+            {
+                id: 3,
+                name: "Executive Calfskin Folio",
+                category: "leather",
+                price: 260.00,
+                rating: 4,
+                image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=80",
+                description: "Handcrafted full-grain leather organizer with brass accents. Perfect companion for business meetings."
+            },
+            {
+                id: 4,
+                name: "Obsidian Aviator Sunglasses",
+                category: "eyewear",
+                price: 195.00,
+                rating: 5,
+                image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80",
+                description: "Polarized titanium frame aviators offering 100% UV protection and unmatched timeless aesthetic."
+            },
+            {
+                id: 5,
+                name: "Sovereign Rose Gold Watch",
+                category: "watches",
+                price: 520.00,
+                rating: 5,
+                image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80",
+                description: "18k rose gold PVD plated timepiece with a genuine Italian alligator leather strap."
+            },
+            {
+                id: 6,
+                name: "Velvet Tobacco & Vanilla Perfume",
+                category: "fragrances",
+                price: 165.00,
+                rating: 4,
+                image: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=800&q=80",
+                description: "Warm, captivating fragrance featuring notes of spicy tobacco, rich vanilla bean, and cocoa."
+            },
+            {
+                id: 7,
+                name: "Monogrammed Leather Wallet",
+                category: "leather",
+                price: 120.00,
+                rating: 5,
+                image: "https://images.unsplash.com/photo-1606503153255-59d8b8b82176?auto=format&fit=crop&w=800&q=80",
+                description: "Slim bifold wallet made from vegetable-tanned leather featuring RFID protection."
+            },
+            {
+                id: 8,
+                name: "Midnight Matte Sunglasses",
+                category: "eyewear",
+                price: 175.00,
+                rating: 5,
+                image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=800&q=80",
+                description: "Sleek matte black frames with subtle gold interior detailing for subtle luxury."
+            }
+        ];
+
+        // Sample Orders for Admin View
+        const initialOrders = [
+            { id: "ORD-9081", customer: "Sophia A.", itemsCount: 2, total: 635.00, status: "Processing" },
+            { id: "ORD-9082", customer: "Marcus R.", itemsCount: 1, total: 120.00, status: "Shipped" },
+            { id: "ORD-9083", customer: "Ethan H.", itemsCount: 1, total: 450.00, status: "Pending" }
+        ];
+
+        // Persistent State
+        let products = JSON.parse(localStorage.getItem('mtn_products')) || initialProducts;
+        let orders = JSON.parse(localStorage.getItem('mtn_orders')) || initialOrders;
+        let currentUser = JSON.parse(localStorage.getItem('mtn_current_user')) || null;
+        let cart = [];
+        let activeCategory = 'all';
+        let searchQuery = '';
+        let currentQuickViewId = null;
+        let currentAuthMode = 'customer'; // 'customer', 'admin', 'register'
+
+        // DOM Elements
+        const productGrid = document.getElementById('product-grid');
+        const cartBtn = document.getElementById('cart-btn');
+        const closeCartBtn = document.getElementById('close-cart-btn');
+        const cartDrawerBackdrop = document.getElementById('cart-drawer-backdrop');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartCountBadge = document.getElementById('cart-count-badge');
+        const cartSubtotalEl = document.getElementById('cart-subtotal');
+        const cartTotalEl = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        // Auth & User Elements
+        const authBtn = document.getElementById('auth-btn');
+        const userBtnText = document.getElementById('user-btn-text');
+        const userDropdown = document.getElementById('user-dropdown');
+        const dropdownUserName = document.getElementById('dropdown-user-name');
+        const dropdownUserRole = document.getElementById('dropdown-user-role');
+        const openAdminPanelBtn = document.getElementById('open-admin-panel-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        const authModal = document.getElementById('auth-modal');
+        const closeAuthModal = document.getElementById('close-auth-modal');
+        const tabCustLogin = document.getElementById('tab-cust-login');
+        const tabAdminLogin = document.getElementById('tab-admin-login');
+        const tabRegister = document.getElementById('tab-register');
+        const demoEmailText = document.getElementById('demo-email-text');
+        const demoPassText = document.getElementById('demo-pass-text');
+        const fillDemoBtn = document.getElementById('fill-demo-btn');
+        const authForm = document.getElementById('auth-form');
+        const nameFieldGroup = document.getElementById('name-field-group');
+        const authNameInput = document.getElementById('auth-name-input');
+        const authEmailInput = document.getElementById('auth-email-input');
+        const authPassInput = document.getElementById('auth-pass-input');
+        const authSubmitBtn = document.getElementById('auth-submit-btn');
+
+        // Admin Modal Elements
+        const adminModal = document.getElementById('admin-modal');
+        const closeAdminBtn = document.getElementById('close-admin-btn');
+        const adminTabOverview = document.getElementById('admin-tab-overview');
+        const adminTabProducts = document.getElementById('admin-tab-products');
+        const adminTabOrders = document.getElementById('admin-tab-orders');
+        const adminViewOverview = document.getElementById('admin-view-overview');
+        const adminViewProducts = document.getElementById('admin-view-products');
+        const adminViewOrders = document.getElementById('admin-view-orders');
+        const addProductForm = document.getElementById('add-product-form');
+
+        // Quickview Modal Elements
+        const quickviewModal = document.getElementById('quickview-modal');
+        const closeQuickview = document.getElementById('close-quickview');
+        const qvImg = document.getElementById('qv-img');
+        const qvCategory = document.getElementById('qv-category');
+        const qvTitle = document.getElementById('qv-title');
+        const qvPrice = document.getElementById('qv-price');
+        const qvDesc = document.getElementById('qv-desc');
+        const qvAddCartBtn = document.getElementById('qv-add-cart-btn');
+
+        // Search Bar Toggle Elements
+        const searchToggleBtn = document.getElementById('search-toggle-btn');
+        const searchBar = document.getElementById('search-bar');
+        const closeSearch = document.getElementById('close-search');
+        const searchInput = document.getElementById('search-input');
+
+        // Mobile Menu Elements
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateUserUI();
+            setupEventListeners();
+        });
+
+        // Save State to LocalStorage
+        function saveState() {
+            localStorage.setItem('mtn_products', JSON.stringify(products));
+            localStorage.setItem('mtn_orders', JSON.stringify(orders));
+            localStorage.setItem('mtn_current_user', JSON.stringify(currentUser));
+        }
+
+        // Render Product Cards
+        function renderProducts() {
+            productGrid.innerHTML = '';
+
+            const filtered = products.filter(p => {
+                const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      p.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                productGrid.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-slate-400">
+                        <i class="fa-solid fa-box-open text-4xl mb-3 text-gold-500/40"></i>
+                        <p class="text-base font-medium">No items found matching your criteria.</p>
+                        <button onclick="resetFilters()" class="mt-4 text-xs text-gold-400 underline">Reset all filters</button>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-navy-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-gold-500/40 transition-all duration-300 flex flex-col justify-between";
+                
+                const starsHTML = Array(product.rating || 5).fill('<i class="fa-solid fa-star text-gold-400"></i>').join(' ');
+
+                card.innerHTML = `
+                    <div class="relative overflow-hidden h-64">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3">
+                            <button onclick="openQuickView(${product.id})" class="w-10 h-10 rounded-full bg-navy-900 text-slate-100 hover:bg-gold-500 hover:text-navy-950 flex items-center justify-center transition-colors shadow-lg" title="Quick View">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button onclick="addToCart(${product.id})" class="w-10 h-10 rounded-full bg-gold-500 text-navy-950 hover:bg-gold-400 flex items-center justify-center transition-colors shadow-lg" title="Add to Bag">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] font-semibold text-gold-400 tracking-wider uppercase">${product.category}</span>
+                            <h3 class="font-serif-title font-semibold text-slate-100 text-base mt-1 group-hover:text-gold-400 transition-colors line-clamp-1">${product.name}</h3>
+                            <div class="flex items-center space-x-1 text-xs mt-2">
+                                ${starsHTML}
+                            </div>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <span class="text-lg font-bold text-slate-100">$${parseFloat(product.price).toFixed(2)}</span>
+                            <button onclick="addToCart(${product.id})" class="px-3.5 py-1.5 rounded-lg bg-navy-800 border border-slate-700 hover:border-gold-500 text-slate-200 hover:text-gold-400 text-xs font-medium transition-all">
+                                + Add
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productGrid.appendChild(card);
+            });
+        }
+
+        // Authentication UI Management
+        function setAuthMode(mode) {
+            currentAuthMode = mode;
+            
+            tabCustLogin.className = "flex-1 py-2 text-slate-400 border-b-2 border-transparent text-center hover:text-slate-200";
+            tabAdminLogin.className = "flex-1 py-2 text-slate-400 border-b-2 border-transparent text-center hover:text-slate-200";
+            tabRegister.className = "flex-1 py-2 text-slate-400 border-b-2 border-transparent text-center hover:text-slate-200";
+
+            if (mode === 'customer') {
+                tabCustLogin.className = "flex-1 py-2 text-gold-400 border-b-2 border-gold-400 text-center";
+                nameFieldGroup.classList.add('hidden');
+                demoEmailText.textContent = "user@nasar.com";
+                demoPassText.textContent = "user123";
+                authSubmitBtn.textContent = "Sign In as Customer";
+            } else if (mode === 'admin') {
+                tabAdminLogin.className = "flex-1 py-2 text-gold-400 border-b-2 border-gold-400 text-center";
+                nameFieldGroup.classList.add('hidden');
+                demoEmailText.textContent = "admin@nasar.com";
+                demoPassText.textContent = "admin123";
+                authSubmitBtn.textContent = "Sign In as Admin";
+            } else if (mode === 'register') {
+                tabRegister.className = "flex-1 py-2 text-gold-400 border-b-2 border-gold-400 text-center";
+                nameFieldGroup.classList.remove('hidden');
+                demoEmailText.textContent = "newuser@nasar.com";
+                demoPassText.textContent = "password123";
+                authSubmitBtn.textContent = "Create Account";
+            }
+        }
+
+        function updateUserUI() {
+            if (currentUser) {
+                userBtnText.textContent = currentUser.name;
+                dropdownUserName.textContent = currentUser.name;
+                dropdownUserRole.textContent = currentUser.role === 'admin' ? 'Administrator' : 'Customer';
+                
+                if (currentUser.role === 'admin') {
+                    openAdminPanelBtn.classList.remove('hidden');
+                } else {
+                    openAdminPanelBtn.classList.add('hidden');
+                }
+            } else {
+                userBtnText.textContent = "Sign In";
+                userDropdown.classList.add('hidden');
+            }
+        }
+
+        // Admin Dashboard Render Logic
+        function renderAdminTables() {
+            // Update Overview Stats
+            document.getElementById('stat-products').textContent = products.length;
+            document.getElementById('stat-orders').textContent = orders.length;
+            const totalRevenue = orders.reduce((sum, o) => sum + o.total, 0);
+            document.getElementById('stat-revenue').textContent = `$${totalRevenue.toFixed(2)}`;
+
+            // Render Inventory Table
+            const inventoryBody = document.getElementById('admin-inventory-table-body');
+            inventoryBody.innerHTML = '';
+            products.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-navy-950/60";
+                tr.innerHTML = `
+                    <td class="p-4 flex items-center space-x-3">
+                        <img src="${p.image}" class="w-10 h-10 object-cover rounded-lg border border-slate-700">
+                        <div>
+                            <span class="font-semibold text-slate-100 block">${p.name}</span>
+                            <span class="text-[10px] text-slate-500">ID: #${p.id}</span>
+                        </div>
+                    </td>
+                    <td class="p-4 capitalize text-gold-400">${p.category}</td>
+                    <td class="p-4 font-bold text-slate-100">$${parseFloat(p.price).toFixed(2)}</td>
+                    <td class="p-4">★ ${p.rating || 5}.0</td>
+                    <td class="p-4 text-right">
+                        <button onclick="deleteProduct(${p.id})" class="px-3 py-1 bg-rose-500/20 text-rose-400 border border-rose-500/30 rounded-lg hover:bg-rose-500 hover:text-white transition-colors">
+                            Delete
+                        </button>
+                    </td>
+                `;
+                inventoryBody.appendChild(tr);
+            });
+
+            // Render Orders Table
+            const ordersBody = document.getElementById('admin-orders-table-body');
+            ordersBody.innerHTML = '';
+            orders.forEach(o => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-navy-950/60";
+                
+                let statusBadge = "bg-amber-500/20 text-amber-400 border-amber-500/30";
+                if (o.status === 'Shipped') statusBadge = "bg-blue-500/20 text-blue-400 border-blue-500/30";
+                if (o.status === 'Delivered') statusBadge = "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+
+                tr.innerHTML = `
+                    <td class="p-4 font-mono font-semibold text-gold-400">${o.id}</td>
+                    <td class="p-4 font-medium text-slate-100">${o.customer}</td>
+                    <td class="p-4">${o.itemsCount} Items</td>
+                    <td class="p-4 font-bold text-slate-100">$${parseFloat(o.total).toFixed(2)}</td>
+                    <td class="p-4">
+                        <span class="px-2.5 py-1 text-[10px] font-semibold rounded-full border ${statusBadge}">${o.status}</span>
+                    </td>
+                    <td class="p-4 text-right">
+                        <select onchange="updateOrderStatus('${o.id}', this.value)" class="bg-navy-950 border border-slate-700 text-slate-200 text-xs rounded-lg px-2 py-1 focus:border-gold-400">
+                            <option value="Pending" ${o.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>Processing</option>
+                            <option value="Shipped" ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                            <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                        </select>
+                    </td>
+                `;
+                ordersBody.appendChild(tr);
+            });
+        }
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            saveState();
+            renderProducts();
+            renderAdminTables();
+            showToast("Product removed from live inventory.");
+        }
+
+        function updateOrderStatus(orderId, newStatus) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = newStatus;
+                saveState();
+                renderAdminTables();
+                showToast(`Order ${orderId} updated to ${newStatus}.`);
+            }
+        }
+
+        // Cart Actions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingIndex = cart.findIndex(item => item.id === productId);
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`Added "${product.name}" to your bag.`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        function changeQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                updateCartUI();
+            }
+        }
+
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountBadge.textContent = totalItems;
+            
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-center text-slate-400 py-12">
+                        <i class="fa-solid fa-bag-shopping text-5xl mb-4 text-slate-700"></i>
+                        <p class="text-base font-medium">Your shopping bag is empty.</p>
+                        <p class="text-xs text-slate-500 mt-1">Explore Muhammad Talha Nasar collections to add items.</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach(item => {
+                    const cartItemEl = document.createElement('div');
+                    cartItemEl.className = "flex items-center space-x-4 bg-navy-950 p-3.5 rounded-xl border border-slate-800";
+                    cartItemEl.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg flex-shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="text-xs font-semibold text-slate-100 truncate">${item.name}</h4>
+                            <span class="text-xs text-gold-400 font-bold">$${parseFloat(item.price).toFixed(2)}</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <button onclick="changeQuantity(${item.id}, -1)" class="w-5 h-5 rounded bg-navy-800 text-slate-300 hover:bg-gold-500 hover:text-navy-950 flex items-center justify-center text-xs">-</button>
+                                <span class="text-xs font-semibold text-slate-200">${item.quantity}</span>
+                                <button onclick="changeQuantity(${item.id}, 1)" class="w-5 h-5 rounded bg-navy-800 text-slate-300 hover:bg-gold-500 hover:text-navy-950 flex items-center justify-center text-xs">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-slate-500 hover:text-rose-400 p-1 text-sm">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    `;
+                    cartItemsContainer.appendChild(cartItemEl);
+                });
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            cartTotalEl.textContent = `$${subtotal.toFixed(2)}`;
+        }
+
+        // Quick View Modal Controls
+        function openQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            currentQuickViewId = product.id;
+            qvImg.src = product.image;
+            qvCategory.textContent = product.category;
+            qvTitle.textContent = product.name;
+            qvPrice.textContent = `$${parseFloat(product.price).toFixed(2)}`;
+            qvDesc.textContent = product.description;
+
+            quickviewModal.classList.remove('hidden');
+            setTimeout(() => {
+                quickviewModal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeQuickViewModal() {
+            quickviewModal.classList.add('opacity-0');
+            setTimeout(() => {
+                quickviewModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Cart Drawer Controls
+        function openCart() {
+            cartDrawerBackdrop.classList.remove('hidden');
+            setTimeout(() => {
+                cartDrawerBackdrop.classList.remove('opacity-0');
+                cartDrawer.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeCart() {
+            cartDrawer.classList.add('translate-x-full');
+            cartDrawerBackdrop.classList.add('opacity-0');
+            setTimeout(() => {
+                cartDrawerBackdrop.classList.add('hidden');
+            }, 300);
+        }
+
+        // Auth Modal Controls
+        function openAuthModal() {
+            authModal.classList.remove('hidden');
+            setTimeout(() => {
+                authModal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeAuthModalFunc() {
+            authModal.classList.add('opacity-0');
+            setTimeout(() => {
+                authModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Admin Modal Controls
+        function openAdminModal() {
+            renderAdminTables();
+            adminModal.classList.remove('hidden');
+            setTimeout(() => {
+                adminModal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeAdminModalFunc() {
+            adminModal.classList.add('opacity-0');
+            setTimeout(() => {
+                adminModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toast Notification Function
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "bg-navy-900 border border-gold-500/40 text-slate-100 text-xs px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-auto transform translate-y-4 opacity-0 transition-all duration-300";
+            toast.innerHTML = `
+                <i class="fa-solid fa-circle-check text-gold-400 text-base"></i>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function resetFilters() {
+            activeCategory = 'all';
+            searchQuery = '';
+            searchInput.value = '';
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-gold-500', 'text-navy-950');
+                btn.classList.add('bg-navy-900', 'text-slate-300');
+            });
+            const allBtn = document.querySelector('[data-category="all"]');
+            if (allBtn) {
+                allBtn.classList.add('bg-gold-500', 'text-navy-950');
+                allBtn.classList.remove('bg-navy-900', 'text-slate-300');
+            }
+            renderProducts();
+        }
+
+        // Event Listeners Setup
+        function setupEventListeners() {
+            // Auth Buttons & Menus
+            authBtn.addEventListener('click', () => {
+                if (currentUser) {
+                    userDropdown.classList.toggle('hidden');
+                } else {
+                    openAuthModal();
+                }
+            });
+
+            logoutBtn.addEventListener('click', () => {
+                currentUser = null;
+                saveState();
+                updateUserUI();
+                userDropdown.classList.add('hidden');
+                showToast("Logged out successfully.");
+            });
+
+            openAdminPanelBtn.addEventListener('click', () => {
+                userDropdown.classList.add('hidden');
+                openAdminModal();
+            });
+
+            closeAdminBtn.addEventListener('click', closeAdminModalFunc);
+
+            // Auth Modal Tabs
+            tabCustLogin.addEventListener('click', () => setAuthMode('customer'));
+            tabAdminLogin.addEventListener('click', () => setAuthMode('admin'));
+            tabRegister.addEventListener('click', () => setAuthMode('register'));
+
+            fillDemoBtn.addEventListener('click', () => {
+                authEmailInput.value = demoEmailText.textContent;
+                authPassInput.value = demoPassText.textContent;
+                if (currentAuthMode === 'register') {
+                    authNameInput.value = "New Customer";
+                }
+            });
+
+            closeAuthModal.addEventListener('click', closeAuthModalFunc);
+
+            authForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = authEmailInput.value.trim();
+                const pass = authPassInput.value.trim();
+
+                if (currentAuthMode === 'admin') {
+                    if (email === 'admin@nasar.com' && pass === 'admin123') {
+                        currentUser = { name: "Muhammad Talha Nasar", role: "admin", email: email };
+                        saveState();
+                        updateUserUI();
+                        closeAuthModalFunc();
+                        showToast("Welcome back, Founder Muhammad Talha Nasar!");
+                        openAdminModal();
+                    } else {
+                        showToast("Invalid Admin credentials.");
+                    }
+                } else if (currentAuthMode === 'customer') {
+                    currentUser = { name: email.split('@')[0] || "Customer", role: "customer", email: email };
+                    saveState();
+                    updateUserUI();
+                    closeAuthModalFunc();
+                    showToast(`Welcome back, ${currentUser.name}!`);
+                } else { // Register
+                    const name = authNameInput.value.trim() || "New Client";
+                    currentUser = { name: name, role: "customer", email: email };
+                    saveState();
+                    updateUserUI();
+                    closeAuthModalFunc();
+                    showToast(`Account created! Welcome, ${name}.`);
+                }
+            });
+
+            // Admin Dashboard Tabs
+            adminTabOverview.addEventListener('click', () => {
+                switchAdminTab(adminTabOverview, adminViewOverview);
+            });
+            adminTabProducts.addEventListener('click', () => {
+                switchAdminTab(adminTabProducts, adminViewProducts);
+            });
+            adminTabOrders.addEventListener('click', () => {
+                switchAdminTab(adminTabOrders, adminViewOrders);
+            });
+
+            function switchAdminTab(activeBtn, activeView) {
+                [adminTabOverview, adminTabProducts, adminTabOrders].forEach(btn => {
+                    btn.className = "admin-tab-btn px-5 py-3 rounded-t-xl bg-navy-900 text-slate-300 border-t border-x border-slate-800 hover:text-gold-400";
+                });
+                [adminViewOverview, adminViewProducts, adminViewOrders].forEach(v => v.classList.add('hidden'));
+
+                activeBtn.className = "admin-tab-btn active-admin-tab px-5 py-3 rounded-t-xl bg-gold-500 text-navy-950";
+                activeView.classList.remove('hidden');
+            }
+
+            // Admin Add Product Form Submit
+            addProductForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newProduct = {
+                    id: Date.now(),
+                    name: document.getElementById('new-prod-title').value.trim(),
+                    category: document.getElementById('new-prod-cat').value,
+                    price: parseFloat(document.getElementById('new-prod-price').value),
+                    rating: 5,
+                    image: document.getElementById('new-prod-img').value.trim(),
+                    description: document.getElementById('new-prod-desc').value.trim()
+                };
+
+                products.unshift(newProduct);
+                saveState();
+                renderProducts();
+                renderAdminTables();
+                addProductForm.reset();
+                showToast(`Product "${newProduct.name}" added to storefront!`);
+            });
+
+            // Cart toggles
+            cartBtn.addEventListener('click', openCart);
+            closeCartBtn.addEventListener('click', closeCart);
+            cartDrawerBackdrop.addEventListener('click', (e) => {
+                if (e.target === cartDrawerBackdrop) closeCart();
+            });
+
+            // Quick view modal
+            closeQuickview.addEventListener('click', closeQuickviewModal);
+            qvAddCartBtn.addEventListener('click', () => {
+                if (currentQuickViewId) {
+                    addToCart(currentQuickViewId);
+                    closeQuickviewModal();
+                }
+            });
+            quickviewModal.addEventListener('click', (e) => {
+                if (e.target === quickviewModal) closeQuickviewModal();
+            });
+
+            // Category filters
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-gold-500', 'text-navy-950');
+                        b.classList.add('bg-navy-900', 'text-slate-300');
+                    });
+                    btn.classList.add('bg-gold-500', 'text-navy-950');
+                    btn.classList.remove('bg-navy-900', 'text-slate-300');
+                    
+                    activeCategory = btn.getAttribute('data-category');
+                    renderProducts();
+                });
+            });
+
+            // Search toggles
+            searchToggleBtn.addEventListener('click', () => {
+                searchBar.classList.toggle('hidden');
+                if (!searchBar.classList.contains('hidden')) {
+                    searchInput.focus();
+                }
+            });
+            closeSearch.addEventListener('click', () => {
+                searchBar.classList.add('hidden');
+                searchQuery = '';
+                searchInput.value = '';
+                renderProducts();
+            });
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                renderProducts();
+            });
+
+            // Mobile menu toggles
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
+            });
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+            });
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('-translate-x-full');
+                });
+            });
+
+            // Newsletter submit
+            document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                showToast("Thank you for joining Muhammad Talha Nasar's private club.");
+                e.target.reset();
+            });
+
+            // Checkout action
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showToast("Your cart is empty!");
+                    return;
+                }
+
+                // Add to Admin Order Queue
+                const newOrder = {
+                    id: `ORD-${Math.floor(1000 + Math.random() * 9000)}`,
+                    customer: currentUser ? currentUser.name : "Guest Client",
+                    itemsCount: cart.reduce((sum, item) => sum + item.quantity, 0),
+                    total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                    status: "Pending"
+                };
+
+                orders.unshift(newOrder);
+                saveState();
+
+                showToast(`Order ${newOrder.id} placed! Thank you for choosing Muhammad Talha Nasar.`);
+                cart = [];
+                updateCartUI();
+                closeCart();
+            });
+        }
+    </script>
+
+<!-- Supabase live catalogue integration -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+(async function(){
+  // Remove the insecure demo sign-in/admin UI from the public storefront.
+  const oldAuth = document.getElementById('auth-modal');
+  const oldAdmin = document.getElementById('admin-modal');
+  if(oldAuth) oldAuth.remove();
+  if(oldAdmin) oldAdmin.remove();
+  const accountButton = document.getElementById('auth-btn');
+  if(accountButton) accountButton.style.display='none';
+  const adminTrigger = document.getElementById('open-admin-panel-btn');
+  if(adminTrigger) adminTrigger.remove();
+
+  if(!window.supabase || !window.SUPABASE_CONFIG) return;
+  const client = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+  try {
+    const {data, error} = await client.from('products')
+      .select('id,name,description,regular_price,sale_price,images,category_id,status')
+      .eq('status','published').order('created_at',{ascending:false});
+    if(error) throw error;
+    if(!data || !data.length) return; // Keep sample cards until products are published.
+    const categoryMap = { 'fragrances':'fragrances', 'leather':'leather', 'eyewear':'eyewear' };
+    products = data.map(p => ({
+      id:p.id, name:p.name, description:p.description || '',
+      price:Number(p.sale_price ?? p.regular_price ?? 0),
+      image:(p.images && p.images.length) ? p.images[0] : '',
+      category:'all', rating:5
+    }));
+    // If category is not one of the existing sample filters, show it under All.
+    window.products.forEach(p=>{ if(!p.image) p.image='https://placehold.co/800x800/070B19/D4AF37?text=Product'; });
+    if(typeof renderProducts==='function') renderProducts();
+  } catch(e) { console.error('Could not load live products:',e); }
+})();
+</script>
+
+</body>
+</html>
